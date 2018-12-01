@@ -1,29 +1,32 @@
 const config = {
     seed:true
 }
-
 const express  = require('express'),
       mongoose = require('mongoose'),
-      spawn    = require("child_process").spawn;
+      spawn    = require("child_process").spawn,
+      bodyParser = require('body-parser');
 
 const app = express();
-let imgName = 'park.jpg'
+
+app.use(bodyParser.json());
 
 let indexRoutes = require("./routes/index.js");
 app.use("/", indexRoutes);
 
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/yale', {useNewUrlParser:true});
-
-// mongoose.on("connect")
-// .then((res)=>{
-//     if(seed) {
-//     }
-// })
-
-app.get('/', (req, res) => {
-    res.render('index');
-})
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("connected to database");
+  if(config.seed) {
+    const seed = require("./seeding/main");
+    seed.exec()
+    .then(res=>{
+        console.log("database has been seeded");
+    })
+  }
+});
 
 // 404 error
 app.use(function (req, res, next) {

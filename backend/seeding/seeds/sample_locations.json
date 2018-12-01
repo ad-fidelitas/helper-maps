@@ -1,0 +1,22 @@
+[
+    {
+        "coordinates": [243, 2345],
+        "accessibilityRating" : 1
+    },
+    {
+        "coordinates": [243, 2345],
+        "accessibilityRating" : 243
+    },
+    {
+        "coordinates": [23, 2345],
+        "accessibilityRating" : 2
+    },
+    {
+        "coordinates": [243, 345],
+        "accessibilityRating" : 165
+    },
+    {
+        "coordinates": [43, 235],
+        "accessibilityRating" : 14
+    }
+]

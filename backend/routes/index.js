@@ -78,5 +78,5 @@ function convertRatingToColor(rating) {
     return "0x" + color;
 }
 
-
+module.exports = router;
 

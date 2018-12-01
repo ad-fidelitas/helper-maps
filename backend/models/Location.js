@@ -1,10 +1,10 @@
 let mongoose = require("mongoose");
 
-let locationSchema = mongoose.Schema({
+let locationSchema = new mongoose.Schema({
     coordinates: [Number],
     accessibilityRating: Number
 })
 
-let Location = new mongoose.Model("location", locationSchema);
+let Location = mongoose.model("Location", locationSchema);
 
 module.exports = Location;
