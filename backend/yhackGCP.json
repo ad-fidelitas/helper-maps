@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "axiomatic-port-224215",
+  "private_key_id": "07519909e99bff85c81f75efc25daa3f367cbaac",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCmvyOnJ07KeyR8\nKR0pMQyZt6TkedvI4ckFHSArdSwPPiEmIjjmtj2IuiF6cSdDTOxl/jUtNBOlN49i\nAdzNtSOEamEAKR+KJzSrV3jZ9cQr+kSg+Uxp1AwW8S3KDKNIykWsSVVuvsKj5t5b\nT0wB6yM51IT5LNCKQPWmt2pdO5H49+TQGi2PND88IXF8L1DGZsIjQmYmfBfFyLdw\nJc3RDB1gWAFEF9d4Vqd6y0A7WhLAtcPeATqmEKY6/wZgzG68j6TTzXEEebgY8wyQ\nLj77BFsI8aI0fiRMwTZP8o79AOv9nVJMrKsAec94euvh51DZo/NwOE38Jcphm6n+\nE4dEhjulAgMBAAECggEAA/NR/uskJ2aUzgmTUp8s3eockqUocIaY4pwhX6YzrbDF\nIZ18nPVYWTLqXszrfIwIAGqYtpdzQl4h8X/Qdrcsk5M0SnKu9/Dx2IAGsZ3sUIu/\nWyj3hyeqRFOLyCurJVWqzOgiiVsk9V50335Dc2WEvMwCJ9JzUQiKSVwzEukPDkeX\nbC/BGXiF1ZV66ow5iuBIO2IkTPoX88W3dtntAo1ivpvk9qkbKD+8Y08TMOLLY089\nB2rcO7o/apZUXXbVYxOCLx6K3J2ht8N9wkGI8y6h2M7dmTrRF4All/DsJLSmgZIZ\ndmRsbF1KiouHH6/rart2wMaY4OaR++9vfCIu3WB/yQKBgQDX9hjWnHnBlf9PT6gA\nk1FPB5gelmL7D5mGbOL+oSFed/dWekegVj7H4jWsiDsIvRO/6ij0LTNdMOZjAvkm\nJMMihKrMdqkBMHNBFz/ts/RTymlLfXGUrjy4JZ65behEcjMrVOw1s6GAgVzFi9Ob\nWImdNIeplZWsvnYtKHdm/8qBCwKBgQDFqTos3gQkDEArLsI29OYcqEySO52hZ8HW\nrRNY8jAAFxj1/a7wrADnxw70Uw4RCCVsDAuOCsG6HiSunLiK/6JP+Q8wupSk3xET\nZpTBRrEb5CwM1Ym0f92tFgR1jTTsbU6cuCC44Ugqf9hL1oJvRNUQLPVJzPzmJ7Ge\nil7YyL2EDwKBgQDH1ZZISES2KDk2R4w69Bah3XIao6f1jwrOA8XMPodlJfc+Eypi\nKEwxo5VtECYoQOWciW3Z/FVyH0SgS+kGLbBPKZnuVsKuMgoEKiJir0kfm8XxL6PB\nI7VV5KHKDfSGGXJV32AvlQeVpJ6WwXtOXRAB4tDB0IPOc/Ngd/h826aj3wKBgHyV\n+dEl7z45aojNZCT3n8MYYYsagHSnzYnedX9ux8qGxHjoeUfBYqC02zwszYT2uX+s\n5+uT5B/HuB9HMRqLnmcB+Q0hzWdOIpkz4zcfs6p82zcLsUxP/A2I/y6I3n7XNuGZ\nPSbK+I2xH0hN4ND5dcJIVCM8TXtUMaRYWwgRH0MJAoGAO/AkcIsyapKIV6gZfu9s\n9tX5MIzEM/AWBX70oIxUFH5Dr/XYclv7jQTJJ5MVd4v1eHZE7Tr7SXdHJ1zh9mmu\nr45H1IOpAf4Yx4nAn97KpeWXi1zO9tLGjqC8ChtSb585xyZVdvix40L7EGFXB2VJ\nPsbbF3885QZtszod7wTAIvI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "valerian@axiomatic-port-224215.iam.gserviceaccount.com",
+  "client_id": "116392551299207665717",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/valerian%40axiomatic-port-224215.iam.gserviceaccount.com"
+}

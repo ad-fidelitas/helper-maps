@@ -1,11 +1,50 @@
+import asyncio
+import sys
+
+#for opencv
 import cv2
 import numpy
 
-pathToImage = "./images/park.jpg"
+#for GCP
+import io
+import os
+
+# Imports the Google Cloud client library
+from google.cloud import vision
+from google.cloud.vision import types
+
+if len(sys.argv) != 2:
+    raise "ERROR: expects one argument (the image file's name)"
+# arg format: 'imagename.jpg'
+pathToImage = "images/" + sys.argv[1]
 
 image = cv2.imread(pathToImage)
 cv2.imshow("Original Image", image)
 cv2.waitKey(0)
+
+
+# Instantiates a GCP client
+client = vision.ImageAnnotatorClient()
+
+# The name of the image file to annotate
+file_name = os.path.join(
+    os.path.dirname(__file__),
+    'images/park.jpg')
+
+# Loads the image into memory
+with io.open(file_name, 'rb') as image_file:
+    content = image_file.read()
+
+google_image = types.Image(content=content)
+
+# Performs label detection on the image file
+response = client.label_detection(image=google_image)
+labels = response.label_annotations
+
+print('Labels:')
+for label in labels:
+    print(label.description)
+
 
 #original height and width
 height, width = image.shape[:2]
