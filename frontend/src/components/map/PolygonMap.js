@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Map from "./map";
 import {Polygon} from "react-google-maps";
+import * as d3 from "d3";
 /**
  * @typedef {Object} Polygon
  * @typedef {Object} Location
@@ -27,11 +28,19 @@ export default class PolygonMap extends Component {
                   }
             }],
             /** @type {Array<Location>} */
-            nuclei: []
+            nuclei: [
+                [23, -70],
+                [37, -50],
+                [13, -30]
+            ]
         }
     }
 
     convertNucleiToPolygons() {
+        let data = this.state.nuclei
+        let polygons = d3.voronoi(data)
+        let formattedPolygons = [{}]
+        console.log(polygons)
         return []
     }
 
