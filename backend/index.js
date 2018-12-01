@@ -17,7 +17,11 @@ const Location = require("./models/Location");
 router.get("/", (req,res)=>{
     Location.find({}).exec()
     .then((locationDocArray)=>{
-        res.send(locationDocArray)
+        const allAccessibilityRatings = locationDocArray.map((locationDoc)=>locationDoc.accessibilityRating);
+        const absoluteMinimum = Math.abs(Math.min(...allAccessibilityRatings));
+        const ratingToColor = ratingToColorGenerator(Math.max(...allAccessibilityRatings, absoluteMinimum));
+        const coloredLocations = ratingToColor(locationDocArray);
+        res.json(coloredLocations);
     })
     .catch((err)=>{
         res.status(422).json(err);
@@ -58,6 +62,25 @@ router.post("/:img_name", (req,res)=>{
         res.status(422).json(err);
     });
 })
+
+/**
+ * @function ratingToColorGenerator
+ * @description Normalizes the data set and converts the normalized rating into a color
+ * @param {Number} max 
+ * @returns {Function} 
+ */
+function ratingToColorGenerator(max){
+    return (LocationSet)=>{
+        return LocationSet.map((location)=>  {
+            let normalizedRating = location.accessibilityRating/max
+            let color = convertRatingToColor(normalizedRating);
+            return {
+                coordinates:location.coordinates,
+                accessibilityColor: color
+            }
+        })
+    }
+}
 
 /**
  * @function convertRatingToColor
