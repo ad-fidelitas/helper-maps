@@ -3,3 +3,5 @@ node_modules/
 images/*.png
 images/*.jpg
 images/*.jpeg
+
+yhackGCP.json
