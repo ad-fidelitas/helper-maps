@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import CameraEnhance from '@material-ui/icons/CameraEnhance'
 import AddLocation from '@material-ui/icons/AddLocation'
 import Help from '@material-ui/icons/Help'
@@ -16,15 +15,12 @@ const styles = theme => ({
   extendedIcon: {
     marginRight: theme.spacing.unit,
   },
-  leftButton: {
-      marginLeft: 320
-  }
 });
 
 function HomePage(props) {
   const { classes } = props;
   return (
-    <div>
+    <div style={{ margin: `10% 0 0 38%` }}>
       <Button variant="fab" color="primary" aria-label="Add" className={classes.button + ' ' + classes.leftButton}>
         <CameraEnhance />
       </Button>
