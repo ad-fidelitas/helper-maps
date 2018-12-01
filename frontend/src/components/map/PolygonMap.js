@@ -4,7 +4,10 @@ import {Polygon} from "react-google-maps";
 import * as d3 from "d3";
 /**
  * @typedef {Object} Polygon
- * @typedef {Object} Location
+ * @typedef {Object} LocationDoc
+ * @prop {Array<Number>} coordinates
+ * @prop {Number} accessibilityRating
+ * @prop {String} _id
  */
 
 export default class PolygonMap extends Component {
@@ -27,28 +30,15 @@ export default class PolygonMap extends Component {
                     fillOpacity: 0.35
                   }
             }],
-            /** @type {Array<Location>} */
+            /** @type {LocationDoc} */
             nuclei: [
-                [40.741895, -73.989308],
-                [45.50478469999999, -73.57715109999998],
-                [38.9833489, -93.5685464],
-                [32.9833489, -90.5685464],
-                [40.9833489, -88.5685464],
-                [31.9833489, -92.5685464],
-                [31.9833489, -89.5685464],
-                [32.9833489, -86.5685464],
-                [33.9833489, -87.5685464],
-                [34.9833489, -88.5685464],
-                [34.9833489, -89.5685464],
-                [30.9833489, -94.5685464],
-                [29.9833489, -94]
             ]
         }
     }
 
     convertNucleiToPolygons() {
         //dummy data
-        let data = this.state.nuclei
+        let data = this.state.nuclei.map((nucleus)=>nucleus.coordinates)
         //change the extent to suit the actual map
         //extent([[-90, -180], [90, 180]]).polygons(data)
         let polygons = d3.voronoi().polygons(data)
@@ -83,8 +73,31 @@ export default class PolygonMap extends Component {
         }
 
         console.log(formattedPolygons)
-
         return formattedPolygons
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:3000")
+        .then(res=>{
+            console.log(res)
+            if(!res.ok) {
+                throw new Error("Locations could not fetch properly");
+            } else {
+                return res.json();
+            }
+        })
+        .then(locations=>{
+            let oldNuclei = this.state.nuclei;
+            let newNuclei = oldNuclei.slice();
+            newNuclei = newNuclei.concat(locations);
+            console.log(newNuclei);
+            // this.setState({
+            //         nuclei:newNuclei
+            // })
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
     }
 
     render() {
