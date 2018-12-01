@@ -29,19 +29,62 @@ export default class PolygonMap extends Component {
             }],
             /** @type {Array<Location>} */
             nuclei: [
-                [23, -70],
-                [37, -50],
-                [13, -30]
+                [40.741895, -73.989308],
+                [45.50478469999999, -73.57715109999998],
+                [38.9833489, -93.5685464],
+                [32.9833489, -90.5685464],
+                [40.9833489, -88.5685464],
+                [31.9833489, -92.5685464],
+                [31.9833489, -89.5685464],
+                [32.9833489, -86.5685464],
+                [33.9833489, -87.5685464],
+                [34.9833489, -88.5685464],
+                [34.9833489, -89.5685464],
+                [30.9833489, -94.5685464],
+                [29.9833489, -94]
             ]
         }
     }
 
     convertNucleiToPolygons() {
+        //dummy data
         let data = this.state.nuclei
-        let polygons = d3.voronoi(data)
-        let formattedPolygons = [{}]
+        //change the extent to suit the actual map
+        //extent([[-90, -180], [90, 180]]).polygons(data)
+        let polygons = d3.voronoi().polygons(data)
+        let formattedPolygons = []
+        // console.log(data)
         console.log(polygons)
-        return []
+        // console.log(polygons[0])
+
+
+        for (let i = 0; i < polygons.length; i++) {
+            //make new polygon
+            let newPolygon = {
+                paths:[],
+                options:{
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.35
+                }
+            }
+
+            //populate the paths key of newPolygon
+            for (let j = 0; j < polygons[i].length; j++) {
+                if (polygons[i][j] === null || polygons[i][j] === null) {
+                    continue
+                }
+                let coordinate = {lat: polygons[i][j][0], lng: polygons[i][j][1]}
+                newPolygon.paths.push(coordinate)
+            }
+            formattedPolygons.push(newPolygon)
+        }
+
+        console.log(formattedPolygons)
+
+        return formattedPolygons
     }
 
     render() {
