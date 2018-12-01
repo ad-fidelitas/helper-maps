@@ -4,6 +4,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Map from './components/map/PolygonMap';
 import Home from "./components/Home.js";
 import Navbar from "./components/Navbar.js";
+import AddImage from "./components/AddImage.js";
 import ErrorPage from "./components/Error.js";
 
 import './App.css';
@@ -19,6 +20,7 @@ class App extends Component {
               <Navbar/>
               <Route path="/" component={Home} exact />
               <Route path="/map" component={Map} exact/>
+              <Route path="/add-image" component={AddImage} exact />
               <Route  component={ErrorPage}/>
           </div>
         </BrowserRouter>
