@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 
-let indexRoutes = require("./routes/index.js");
+let indexRoutes = require("./index.js");
 app.use("/", indexRoutes);
 
 // MongoDB set-up
@@ -36,7 +36,7 @@ db.once('open', function() {
 
 // 404 error
 app.use(function (req, res, next) {
-    res.status(404).render('error');
+    res.status(404).send('error');
 });
 
 // 500 error

@@ -16,7 +16,7 @@ from google.cloud.vision import types
 if len(sys.argv) != 2:
     raise "ERROR: expects one argument (the image file's name)"
 # arg format: 'imagename.jpg'
-pathToImage = "images/" + sys.argv[1]
+pathToImage = "./images/" + sys.argv[1]
 
 image = cv2.imread(pathToImage)
 #cv2.imshow("Original Image", image)

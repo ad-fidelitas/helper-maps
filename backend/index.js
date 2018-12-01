@@ -2,7 +2,7 @@
 var express = require("express");
 var router = express.Router();
 const { spawn } = require('child_process');
-const Location = require("../models/Location");
+const Location = require("./models/Location");
 
 /**
  * @typedef {Array<Number>} Coordinates
@@ -30,17 +30,21 @@ router.post("/:img_name", (req,res)=>{
     let coordinates = req.body;
     console.log(req.body);
     console.log(req.params.img_name);
+
     new Promise(function(fulfill, reject) {
         const pyprog = spawn('python3',["../image-processing.py", req.params.img_name]);
         pyprog.stdout.on('data', function(data) {
+			console.log('PYTHON SCRIPT WORKED')
             fulfill(data);
         });
         pyprog.stderr.on('data', (data) => {
+			console.log('PYTHON SCRIPT BROKE')
             reject(data);
         });
     })
     .then(function(fromRunpy) {
         let accessTotal = Number(fromRunpy.toString());
+		console.log("Access Total = " + accessTotal)
         Location.create({
             coordinates: [coordinates[0], coordinates[1]],
             accessibilityRating: accessTotal
