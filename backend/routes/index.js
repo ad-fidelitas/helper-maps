@@ -28,9 +28,10 @@ router.post("/:img_name", (req,res)=>{
     // send image to database by calling the Python part of the code
     /** @type {Coordinates} */
     let coordinates = req.body;
-
+    console.log(req.body);
+    console.log(req.params.img_name);
     new Promise(function(fulfill, reject) {
-        const pyprog = spawn('python3',["./image-processing.py", req.params.img_name]);
+        const pyprog = spawn('python3',["../image-processing.py", req.params.img_name]);
         pyprog.stdout.on('data', function(data) {
             fulfill(data);
         });
