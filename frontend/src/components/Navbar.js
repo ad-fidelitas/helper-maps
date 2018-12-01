@@ -27,7 +27,7 @@ const styles = {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">
-              Photos
+              <b>HandiMaps</b>
             </Typography>
           </Toolbar>
         </AppBar>
