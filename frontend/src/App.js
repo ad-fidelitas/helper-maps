@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Map from './components/map/map';
+import Map from './components/map/PolygonMap';
 
 class App extends Component {
   render() {
@@ -9,5 +9,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
