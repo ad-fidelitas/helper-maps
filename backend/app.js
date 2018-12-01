@@ -4,7 +4,9 @@ const config = {
 const express  = require('express'),
       mongoose = require('mongoose'),
       spawn    = require("child_process").spawn,
-      bodyParser = require('body-parser');
+      bodyParser = require('body-parser'),
+	  multer = require('multer'),
+	  path = require('path');
 
 const app = express();
 
