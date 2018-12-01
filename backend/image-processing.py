@@ -25,14 +25,13 @@ cv2.waitKey(0)
 
 #original height and width
 height, width = image.shape[:2]
-print (image.shape)
 
 #top left quadrant
 start_row, start_col = int(0), int(0)
 end_row, end_col = int(height * 0.5), int(width * 0.5)
 cropped_top_left = image[start_row:end_row , start_col:end_col]
-print (f'{start_row} + {end_row}')
-print (f'{start_col} + {end_col}')
+#print (f'{start_row} + {end_row}')
+#print (f'{start_col} + {end_col}')
 
 #cv2.imshow("Cropped Top Left", cropped_top_left)
 cv2.imwrite("images/img1.jpg", cropped_top_left)
@@ -43,8 +42,6 @@ cv2.destroyAllWindows()
 start_row, start_col = int(0), int(width * 0.5)
 end_row, end_col = int(height * 0.5), int(width)
 cropped_top_right = image[start_row:end_row , start_col:end_col]
-print (f'{start_row} + {end_row}')
-print (f'{start_col} + {end_col}')
 
 #cv2.imshow("Cropped Top Right", cropped_top_right)
 cv2.imwrite("images/img2.jpg", cropped_top_right)
@@ -55,8 +52,6 @@ cv2.destroyAllWindows()
 start_row, start_col = int(height * 0.5), int(0)
 end_row, end_col = int(height), int(width * 0.5)
 cropped_bot_left = image[start_row:end_row , start_col:end_col]
-print (f'{start_row} + {end_row}')
-print (f'{start_col} + {end_col}')
 
 #cv2.imshow("Cropped Bot Left", cropped_bot_left)
 cv2.imwrite("images/img3.jpg", cropped_bot_left)
@@ -67,18 +62,11 @@ cv2.destroyAllWindows()
 start_row, start_col = int(height * 0.5), int(width * 0.5)
 end_row, end_col = int(height), int(width)
 cropped_bot_right = image[start_row:end_row , start_col:end_col]
-print (f'{start_row} + {end_row}')
-print (f'{start_col} + {end_col}')
 
 #cv2.imshow("Cropped Bot Right", cropped_bot_right)
 cv2.imwrite("images/img4.jpg", cropped_bot_right)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
-cropped_top_left.size
-cropped_top_right.size
-cropped_bot_left.size
-cropped_bot_right.size
 
 #GCP IMAGE API CALLS:
 # Instantiates a GCP client
@@ -100,11 +88,9 @@ async def callGoogle(path):
     labelList = []
     response = client.label_detection(image=google_image)
     labels = response.label_annotations
-    print('Labels:')
     for label in labels:
         labelList.append(label.description)
-        print(label.description)
-    print(labelList)
+    #print(labelList)
     return labelList
 
 async def precall():
@@ -112,9 +98,21 @@ async def precall():
     img2 = loop.create_task(callGoogle("images/img2.jpg"))
     img3 = loop.create_task(callGoogle("images/img3.jpg"))
     img4 = loop.create_task(callGoogle("images/img4.jpg"))
+    return img1, img2, img3, img4
 
 try:
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(precall())
+    result = loop.run_until_complete(precall())
+    accessScore = 0
+    for res in result:
+        labelArray = res.result()
+        if 'stairs' in labelArray:
+            accessScore = accessScore + 1
+        if 'ramp' in labelArray:
+            accessScore = accessScore - 1
+    print(accessScore)
+    sys.stdout.flush()
 except Exception as e:
     print(e)
+
+
