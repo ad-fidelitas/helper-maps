@@ -70,7 +70,7 @@ function convertRatingToColor(rating) {
     for (let index = 0; index < 6 - colorLength; index++) {
         color = "0" + color;
     }
-    return "0x" + color;
+    return "#" + color;
 }
 
 
