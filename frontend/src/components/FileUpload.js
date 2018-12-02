@@ -26,6 +26,7 @@ class FileUpload extends Component {
         axios.post('http://localhost:3000/upload', formData)
             .then((result) => {
             // access results...
+            window.location.pathname = '/map'
         });
     }
 
