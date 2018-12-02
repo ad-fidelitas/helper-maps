@@ -1,5 +1,6 @@
 const config = {
-    seed:true
+    seed:false,
+    download: true
 }
 const express  = require('express'),
       mongoose = require('mongoose'),
@@ -27,6 +28,13 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("connected to database");
+  if(config.download) {
+      const downloadToSeed = require("./seeding/download-db-to-seed");
+      downloadToSeed.exec("./seeding/seeds/new-data.json")
+      .then((res)=>{
+          console.log("downloaded")
+      })
+  }
   if(config.seed) {
     const seed = require("./seeding/main");
     seed.exec()

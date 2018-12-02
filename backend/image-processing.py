@@ -94,6 +94,7 @@ async def callGoogle(path):
     return labelList
 
 async def precall():
+    img0 = loop.create_task(callGoogle("images/file.jpg"))
     img1 = loop.create_task(callGoogle("images/img1.jpg"))
     img2 = loop.create_task(callGoogle("images/img2.jpg"))
     img3 = loop.create_task(callGoogle("images/img3.jpg"))
@@ -107,9 +108,11 @@ try:
     for res in result:
         labelArray = res.result()
         if 'stairs' in labelArray:
-            accessScore = accessScore + 1
-        if 'ramp' in labelArray:
             accessScore = accessScore - 1
+        if 'ramp' in labelArray:
+            accessScore = accessScore + 1
+        if 'elevator' in labelArray:
+            accessScore = accessScore + 1
     print(accessScore)
     sys.stdout.flush()
 except Exception as e:
