@@ -20,7 +20,6 @@ const styles = theme => ({
 
 class Dropdown extends React.Component {
   state = {
-    City: '',
     open: false,
   };
 
@@ -49,11 +48,12 @@ class Dropdown extends React.Component {
             onClose={this.handleClose}
             onOpen={this.handleOpen}
             value={this.state.City}
-            onChange={this.handleChange}
+            onChange={this.props.onChange}
             inputProps={{
               name: 'age',
               id: 'demo-controlled-open-select',
             }}
+            value={this.props.value}
           >
             <MenuItem value="Montreal">
               <em>Montreal</em>
