@@ -2,7 +2,7 @@
 
     {
         "coordinates": [41.314471, -72.930971],
-        "accessibilityRating": -1
+        "accessibilityRating": -10
     },
     {
         "coordinates": [41.314206, -72.930717],
@@ -63,5 +63,5 @@
     {
         "coordinates": [41.314361, -72.930538],
         "accessibilityRating": -10
-    },
+    }
 ]
