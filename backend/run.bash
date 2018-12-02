@@ -1,0 +1,6 @@
+
+export GOOGLE_APPLICATION_CREDENTIALS="./yhackGCP.json"
+
+echo $GOOGLE_APPLICATION_CREDENTIALS
+
+nodemon app.js

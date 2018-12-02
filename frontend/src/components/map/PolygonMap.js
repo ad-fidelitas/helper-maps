@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Map from "./map";
 import {Polygon} from "react-google-maps";
 import * as d3 from "d3";
+import Button from '@material-ui/core/Button';
+import ArrowBack from '@material-ui/icons/ArrowBack'
 /**
  * @typedef {Object} Polygon
  * @typedef {Object} LocationDoc
@@ -104,12 +106,15 @@ export default class PolygonMap extends Component {
         console.log(polygons);
         return(
             <div>
+            <Button style={{ margin: `4% 0 0 4%` }} variant="fab" color="primary" aria-label="Add">
+                <ArrowBack />
+            </Button>
                 <Map
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBYx1RNyOmrhEp_KBp98yHQdqpPjCPu4ts"
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
-                mapElement={<div style={{ height: `100%` }}/>}
+                mapElement={<div style={{ height: `150%`, width: `60%`, margin: `2% auto`, border: `solid #3f51b5 6px` }}/>}
                 children={
                     <React.Fragment>
                         {polygons.map((polygon, index)=>(
