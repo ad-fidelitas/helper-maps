@@ -26,4 +26,4 @@ function generateRandomLocations(quantity) {
     return randomLocations;
 }
 let seed = generateRandomLocations(10)
-fs.writeFileSync("./seeding/seeds/montreal_data.json", JSON.stringify(seed));
+fs.writeFileSync("./seeding/seeds/yale_stadium.json", JSON.stringify(seed));

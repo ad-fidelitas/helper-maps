@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Map from "./map";
-import {Polygon} from "react-google-maps";
+import {Polygon, Marker} from "react-google-maps";
 import * as d3 from "d3";
 import Button from '@material-ui/core/Button';
 import ArrowBack from '@material-ui/icons/ArrowBack'
@@ -37,8 +37,15 @@ export default class PolygonMap extends Component {
             polygons: [],
             /** @type {Array<Location>} */
             nuclei: [
-            ]
+            ],
+            city:"Montreal",
+            position:
+            {lat: 45.5016889,
+                lng: -73.567256}
         }
+
+        this.onChange = this.onChange.bind(this);
+        this.requestData = this.requestData.bind(this);
     }
 
     convertNucleiToPolygons() {
@@ -134,6 +141,7 @@ export default class PolygonMap extends Component {
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `150%`, width: `60%`, margin: `2% auto`, border: `solid #009688 6px` }}/>}
+                defaultCenter={this.state.position}
                 children={
                     <React.Fragment>
                         {polygons.map((polygon, index)=>(
@@ -143,9 +151,45 @@ export default class PolygonMap extends Component {
                             options={polygon.options}
                             />
                         ))}
+                        {this.state.position && <Marker position={this.state.position} />}
                     </React.Fragment>
                 } />
+
+                <select value={this.state.value} onChange={this.onChange}>
+                    <option value="Montreal">Montreal</option>
+                    <option value="Yale">Yale</option>
+                    <option value="Gatineau">Gatineau</option>
+                    <option value="Toronto">Toronto</option>
+                </select>
+                <button type="button" style={{height:"400px", width:"400px"}}onClick={this.requestData}></button>
             </div>
         )
+    }
+
+    onChange(event) {
+        event.preventDefault();
+        this.setState({
+            city: event.target.value
+        })
+    }
+
+    requestData(event) {
+        event.preventDefault();
+        console.log(this.state.city);
+        // Create the object
+        // make request to google geocaching API Here (with the same key as before)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.city}&key=AIzaSyBYx1RNyOmrhEp_KBp98yHQdqpPjCPu4ts`)
+        .then(res=>res.json())
+        .then(json=>{
+            let location = json.results[0].geometry.location
+            console.log(json.results[0])
+            console.log(location);
+            this.setState({
+                position: location
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 }
