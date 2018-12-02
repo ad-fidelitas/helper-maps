@@ -3,7 +3,6 @@ import gcpLogo from "./gcpLogo.jpg"
 import jpmcLogo from "./jpmcLogo.png"
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
