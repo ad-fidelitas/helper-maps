@@ -27,7 +27,7 @@ function HomePage(props) {
             <h1 style={{ padding: `5% 0 0 0`, textAlign: `center`, margin: `0`, fontSize: `60px`, fontWeight: `1` }}>Safety is the #1 Priority</h1>
             <h2 style={{ padding: `2% 0 0 0`, textAlign: `center`, margin: `0`, fontSize: `30px`, fontWeight: `1` }}>A Map to Help You Find the Safest Way to Your Destination</h2>
             <div style={{ marginLeft: `38%`, marginBottom: `5%`}}>
-                <Link to="/map" >
+                <Link to="/add-image" >
                     <Button variant="fab" color="primary" aria-label="Add" className={classes.button}>
                         <CameraEnhance />
                     </Button>
