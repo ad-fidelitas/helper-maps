@@ -99,7 +99,7 @@ async def precall():
     img2 = loop.create_task(callGoogle("images/img2.jpg"))
     img3 = loop.create_task(callGoogle("images/img3.jpg"))
     img4 = loop.create_task(callGoogle("images/img4.jpg"))
-    return img1, img2, img3, img4
+    return img0, img1, img2, img3, img4
 
 try:
     loop = asyncio.get_event_loop()
@@ -108,10 +108,22 @@ try:
     for res in result:
         labelArray = res.result()
         if 'stairs' in labelArray:
+            accessScore = accessScore - 2
+        if 'table' in labelArray:
             accessScore = accessScore - 1
+        if 'chair' in labelArray:
+            accessScore = accessScore - 0.5
         if 'ramp' in labelArray:
             accessScore = accessScore + 1
+        if 'handrail' in labelArray:
+            accessScore = accessScore + 0.5
+        if 'path' in labelArray:
+            accessScore = accessScore + 0.5
+        if 'floor' in labelArray:
+            accessScore = accessScore + 0.5
         if 'elevator' in labelArray:
+            accessScore = accessScore + 2
+        if 'bench' in labelArray:
             accessScore = accessScore + 1
     print(accessScore)
     sys.stdout.flush()
