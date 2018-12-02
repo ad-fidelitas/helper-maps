@@ -5,6 +5,64 @@ const { spawn } = require('child_process');
 const Location = require("./models/Location");
 const path = require('path');
 const multer = require('multer');
+const fs = require('fs');
+
+global.DataView = global.DataView || require('jdataview');
+global.DOMParser = global.DOMParser || require('xmldom').DOMParser;
+
+const ExifReader = require('exifreader');
+const exifErrors = ExifReader.errors;
+
+
+const filePath = './images/file.jpg'
+
+function getExifData () {
+		return new Promise((resolve, reject) => {
+				fs.readFile(filePath, function (error, data) {
+					if (error) {
+						console.error('Error reading file.');
+						process.exit(1);
+					}
+
+					try {
+						const tags = ExifReader.load(data.buffer);
+
+						// The MakerNote tag can be really large. Remove it to lower memory
+						// usage if you're parsing a lot of files and saving the tags.
+						delete tags['MakerNote'];
+							if(tags.GPSLatitude != undefined && tags.GPSLatitudeRef.value != undefined){
+								console.log('GETTING COORDINATES')
+								results = []
+								results.push(tags.GPSLatitudeRef.value)
+								results.push(tags.GPSLatitude.description)
+								results.push(tags.GPSLongitudeRef.value)
+								results.push(tags.GPSLongitude.description)		
+								delete tags
+								//console.log(results)
+								resolve(results)
+							} else {
+								reject('NO COORDINATES')
+							}
+						
+					} catch (error) {
+						console.log('ERROR')
+						console.log(error)
+						
+
+						console.error(error);
+						process.exit(1);
+					}
+				});
+		})
+		
+}
+
+function listTags(tags) {
+    for (const name in tags) {
+        console.log(`${name}: ${tags[name].description}`);
+    }
+}
+
 
 /**
  * @typedef {Array<Number>} Coordinates
@@ -87,7 +145,7 @@ var storage = multer.diskStorage({
 // img init upload
 var upload = multer({
     storage: storage,
-    limits: {fileSize: 1000000},
+    limits: {fileSize: 10000000},
     fileFilter: function (req, file, cb) {
         checkFileType(file, cb);
     }
@@ -117,29 +175,39 @@ router.post("/upload", function(req,res){
             }
 
             var filename = req.file.filename;
-            console.log(filename);
-			// TODO: MAKE COORDINATES NOT HARD-CODED
-			//let coordinates = req.body;
-			let coordinates = [100, 200]
-			//console.log(req.body);
-			//console.log(req.params.img_name);
-
-			new Promise(function(fulfill, reject) {
-				const pyprog = spawn('python3',["./image-processing.py", 'file.jpg']);
-				pyprog.stdout.on('data', function(data) {
-					console.log('PYTHON SCRIPT WORKED')
-					fulfill(data);
-				});
-				pyprog.stderr.on('data', (data) => {
-					console.log('PYTHON SCRIPT BROKE')
-					reject(data);
-				});
-			})
+			getExifData()
+				.then((coords) => {
+					return new Promise(function(fulfill, reject) {
+						const pyprog = spawn('python3',["./image-processing.py", 'file.jpg']);
+						pyprog.stdout.on('data', function(data) {
+							console.log('PYTHON SCRIPT WORKED')
+							coords.push(Number(data.toString()))
+							fulfill(coords);
+						});
+						pyprog.stderr.on('data', (data) => {
+							console.log('PYTHON SCRIPT BROKE')
+							reject(data);
+						});
+					})
+				})
 			.then(function(fromRunpy) {
-				let accessTotal = Number(fromRunpy.toString());
+				let accessTotal = fromRunpy[4]
+				//console.log(fromRunpy)
 				console.log("Access Total = " + accessTotal)
+				// West neg
+				// North pos
+				var latitude = fromRunpy[1]
+				var longitude = fromRunpy[3]
+					if (fromRunpy[0][0] == 'S'){
+							latitude *= -1
+					}
+					if (fromRunpy[2][0] == 'W'){
+							longitude *= -1
+					}
+				console.log(`Coordinates: latitude = ${latitude} and longitude = ${longitude}`)
 				Location.create({
-					coordinates: [coordinates[0], coordinates[1]],
+					coordinates: [latitude, longitude],
+					//coordinates: [coords[1], coords[3]],
 					accessibilityRating: accessTotal
 				})
 				.then((locationDoc)=>{
