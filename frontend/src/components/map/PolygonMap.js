@@ -146,16 +146,9 @@ export default class PolygonMap extends Component {
                 </Button>
             </Link>
             <div style={{display:'flex', justifyContent:'center'}}>
-<<<<<<< HEAD
-                <Dropdown />
-                <Button style={{ border: '3px solid #009688', marginLeft: '10px' }}>
-                    Submit
-                </Button>
-=======
                 <Dropdown onChange={this.onChange} value={this.state.city}/>
                 <button style={buttonStyle} type="button" 
                 onClick={this.requestData}>Change!</button>
->>>>>>> 4eac6ba7e9b05377d942f70f81e8f1d499761c6e
             </div>
                 <Map
                 isMarkerShown
