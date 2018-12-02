@@ -11,7 +11,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 const styles = {
     root: {
       width: "100%",
-      marginTop: '8%'
+      marginTop: '15%',
     },
   };
   

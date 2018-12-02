@@ -27,8 +27,9 @@ class App extends Component {
                 <Route path="/about" component={About} exact />
                 <Route  component={ErrorPage}/>
               </Switch>
+              <div>
               <Footer />
-              
+              </div>
           </div>
         </BrowserRouter>
       </div>

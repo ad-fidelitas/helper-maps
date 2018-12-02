@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Map from "./map";
-import {Polygon} from "react-google-maps";
+import {Polygon, Marker} from "react-google-maps";
 import * as d3 from "d3";
 import Button from '@material-ui/core/Button';
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import { Link } from 'react-router-dom';
+import Dropdown from '../dropdown/dropdown.js';
 /**
  * @typedef {Object} Polygon
  * @typedef {Object} Location
@@ -37,8 +38,15 @@ export default class PolygonMap extends Component {
             polygons: [],
             /** @type {Array<Location>} */
             nuclei: [
-            ]
+            ],
+            city:"Montreal",
+            position:
+            {lat: 45.5016889,
+                lng: -73.567256}
         }
+
+        this.onChange = this.onChange.bind(this);
+        this.requestData = this.requestData.bind(this);
     }
 
     convertNucleiToPolygons() {
@@ -123,17 +131,22 @@ export default class PolygonMap extends Component {
         console.log(polygons);
         return(
             <div>
+            
             <Link to="/">
                 <Button style={{ margin: `4% 0 0 4%`, backgroundColor: `#d43a36` }} variant="fab" color="primary" aria-label="Add">
                     <ArrowBack />
                 </Button>
             </Link>
+            <div style={{display:'flex', justifyContent:'center'}}>
+                <Dropdown />
+            </div>
                 <Map
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBYx1RNyOmrhEp_KBp98yHQdqpPjCPu4ts"
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `150%`, width: `60%`, margin: `2% auto`, border: `solid #009688 6px` }}/>}
+                defaultCenter={this.state.position}
                 children={
                     <React.Fragment>
                         {polygons.map((polygon, index)=>(
@@ -143,9 +156,38 @@ export default class PolygonMap extends Component {
                             options={polygon.options}
                             />
                         ))}
+                        {this.state.position && <Marker position={this.state.position} />}
                     </React.Fragment>
                 } />
+
             </div>
         )
+    }
+
+    onChange(event) {
+        event.preventDefault();
+        this.setState({
+            city: event.target.value
+        })
+    }
+
+    requestData(event) {
+        event.preventDefault();
+        console.log(this.state.city);
+        // Create the object
+        // make request to google geocaching API Here (with the same key as before)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.city}&key=AIzaSyBYx1RNyOmrhEp_KBp98yHQdqpPjCPu4ts`)
+        .then(res=>res.json())
+        .then(json=>{
+            let location = json.results[0].geometry.location
+            console.log(json.results[0])
+            console.log(location);
+            this.setState({
+                position: location
+            })
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 }
