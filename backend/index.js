@@ -224,7 +224,7 @@ router.post("/upload", function(req,res){
 
 function processImgOnly(longitude, latitude) {
 	new Promise(function(fulfill, reject) {
-		const pyprog = spawn('python3',["./image-processing.py", 'google.jpg']);
+		const pyprog = spawn('python3',["./image-processing.py", 'file.jpg']);
 		pyprog.stdout.on('data', function(data) {
 			console.log('PYTHON SCRIPT WORKED')
 			console.log(data.toString())

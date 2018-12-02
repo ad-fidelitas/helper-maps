@@ -1,4 +1,5 @@
 const index = require('./index');
+const Location = require('./models/Location');
 
 //@ts-check
 var fs = require('fs'),
@@ -17,6 +18,7 @@ var download = function(uri, filename, callback){
   };
 
 function downloadLocationPicture(locationName, locationbias, filename) {
+    console.log('HERE')
     return new Promise(function(resolve, reject) {
         googleMapsClient.findPlace({
             input:locationName,
@@ -26,6 +28,7 @@ function downloadLocationPicture(locationName, locationbias, filename) {
             locationbias: locationbias
         }, function(err, response){
             if(err) {
+                console.log('rejec 1')
                 reject(err)
             } else {
                 googleMapsClient.placesPhoto({
@@ -33,10 +36,12 @@ function downloadLocationPicture(locationName, locationbias, filename) {
                     maxheight:800
                 }, function(err, response){
                     if(err) {
+                        console.log('reject')
                         reject(err)
                     } else {
                         let uri = "https://" + response.req.socket._host + response.req.path;
                         download(uri, filename, function(){
+                            console.log('resolve')
                             resolve("good");
                         });
                     }
@@ -46,25 +51,23 @@ function downloadLocationPicture(locationName, locationbias, filename) {
     });
 }
 
+
+module.exports = downloadLocationPicture;
 //TODO: ASYNC DOESN'T WORK! We need the loop to wait until the download is done to send the processImgOnly call
-function callGoogle() {
-		let latitude = 45.512410;
-		let longitude = -73.569356;
+//	let latitude = 45.493613;
+    // let longitude = -73.587746;
 
-		for (var i = 0; i < 0.5; i+= 0.05){
-			for(var j = 0; j < 0.5; j+= 0.05){
-				console.log(`i = ${i}`)
-				console.log(`j = ${j}`)
-				downloadLocationPicture("public", `circle:20@${latitude},${longitude}`, "./images/google.jpg")
-				.then( (result) => {
-					index.processImgOnly(latitude, longitude)
-					longitude += j;
-				}) 
-				
-			}
-			longitude = -73.569356;
-			latitude += i;
-		}
-}
-
-callGoogle()
+// 		for (var i = 0; i < 0.5; i+= 0.05){
+                //console.log(`i = ${i}`)
+//for( var i = 0; i < 10; i++) {
+    // var filename = Date.now()
+    // longitude += 0.0068362*6
+    // latitude += 0.003007*6
+    // downloadLocationPicture("quebec", `circle:20@${latitude},${longitude}`, `./images/file.jpg`)
+    // .then( (res) => {
+    //     console.log(res)
+    //     index.processImgOnly(longitude, latitude);
+    // })
+//}
+	//		latitude += i;
+	//  	}
