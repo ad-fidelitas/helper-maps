@@ -139,6 +139,9 @@ export default class PolygonMap extends Component {
             </Link>
             <div style={{display:'flex', justifyContent:'center'}}>
                 <Dropdown />
+                <Button style={{ border: '3px solid #009688', marginLeft: '10px' }}>
+                    Submit
+                </Button>
             </div>
                 <Map
                 isMarkerShown
