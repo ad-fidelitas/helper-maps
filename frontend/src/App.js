@@ -6,6 +6,8 @@ import Home from "./components/Home.js";
 import Navbar from "./components/Navbar.js";
 import AddImage from "./components/AddImage.js";
 import ErrorPage from "./components/Error.js";
+import About from "./components/about/about.js";
+import Footer from "./components/footer.js";
 
 import './App.css';
 
@@ -22,9 +24,12 @@ class App extends Component {
                 <Route path="/" component={Home} exact />
                 <Route path="/map" component={Map} exact/>
                 <Route path="/add-image" component={AddImage} exact />
+                <Route path="/about" component={About} exact />
                 <Route  component={ErrorPage}/>
               </Switch>
-              
+              <div>
+              <Footer />
+              </div>
           </div>
         </BrowserRouter>
       </div>

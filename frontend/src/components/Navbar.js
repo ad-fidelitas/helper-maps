@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom'
+
 
 const styles = {
     root: {
@@ -27,9 +29,11 @@ const styles = {
       <div className={classes.root}>
         <AppBar className={classes.header} position="static">
           <Toolbar variant="dense">
+          <Link to='./'>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
+                <MenuIcon style={{ color: `#fff` }} />
             </IconButton>
+            </Link>
             <Typography variant="h6" color="inherit">
               <b>HandiMaps</b>
             </Typography>

@@ -5,6 +5,7 @@ import * as d3 from "d3";
 import Button from '@material-ui/core/Button';
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import { Link } from 'react-router-dom';
+import Dropdown from '../dropdown/dropdown.js';
 /**
  * @typedef {Object} Polygon
  * @typedef {Object} Location
@@ -130,11 +131,15 @@ export default class PolygonMap extends Component {
         console.log(polygons);
         return(
             <div>
+            
             <Link to="/">
                 <Button style={{ margin: `4% 0 0 4%`, backgroundColor: `#d43a36` }} variant="fab" color="primary" aria-label="Add">
                     <ArrowBack />
                 </Button>
             </Link>
+            <div style={{display:'flex', justifyContent:'center'}}>
+                <Dropdown />
+            </div>
                 <Map
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBYx1RNyOmrhEp_KBp98yHQdqpPjCPu4ts"
@@ -155,13 +160,6 @@ export default class PolygonMap extends Component {
                     </React.Fragment>
                 } />
 
-                <select value={this.state.value} onChange={this.onChange}>
-                    <option value="Montreal">Montreal</option>
-                    <option value="Yale">Yale</option>
-                    <option value="Gatineau">Gatineau</option>
-                    <option value="Toronto">Toronto</option>
-                </select>
-                <button type="button" style={{height:"400px", width:"400px"}}onClick={this.requestData}></button>
             </div>
         )
     }
