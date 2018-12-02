@@ -43,10 +43,6 @@ export default class PolygonMap extends Component {
         //extent([[-90, -180], [90, 180]]).polygons(data)
         let polygons = d3.voronoi().polygons(data)
         let formattedPolygons = []
-        // console.log(data)
-        console.log(polygons)
-        // console.log(polygons[0])
-
 
         for (let i = 0; i < polygons.length; i++) {
             //make new polygon
@@ -91,6 +87,7 @@ export default class PolygonMap extends Component {
             let newNuclei = oldNuclei.slice();
             newNuclei = newNuclei.concat(locations);
             console.log(newNuclei);
+            // console.log(polygons[0])uclei);
             // this.setState({
             //         nuclei:newNuclei
             // })
