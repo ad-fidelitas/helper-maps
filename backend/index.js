@@ -222,6 +222,41 @@ router.post("/upload", function(req,res){
 });
 });
 
+function processImgOnly(longitude, latitude) {
+	new Promise(function(fulfill, reject) {
+		const pyprog = spawn('python3',["./image-processing.py", 'file.jpg']);
+		pyprog.stdout.on('data', function(data) {
+			console.log('PYTHON SCRIPT WORKED')
+			fulfill(data);
+		});
+		pyprog.stderr.on('data', (data) => {
+			console.log('PYTHON SCRIPT BROKE')
+			reject(data);
+		});
+	})
+	.then(function(fromRunpy) {
+		let accessTotal = Number(fromRunpy.toString())
+		//console.log(fromRunpy)
+		console.log("Access Total = " + accessTotal)
+		// West neg
+		// North pos
+		Location.create({
+			coordinates: [latitude, longitude],
+			//coordinates: [coords[1], coords[3]],
+			accessibilityRating: accessTotal
+		})
+		.then((locationDoc)=>{
+			res.json(locationDoc);
+		})
+	})
+	.catch((err)=>{
+		console.log("error has not been properly analysed by the database");
+		res.status(422).json(err);
+	});
+}
+
+
+
 module.exports = router;
 
 
