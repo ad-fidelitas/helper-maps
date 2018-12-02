@@ -1,6 +1,6 @@
 //@ts-check
 import React, { Component } from 'react';
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Map from './components/map/PolygonMap';
 import Home from "./components/Home.js";
 import Navbar from "./components/Navbar.js";
@@ -18,10 +18,13 @@ class App extends Component {
         <BrowserRouter>
           <div>
               <Navbar/>
-              <Route path="/" component={Home} exact />
-              <Route path="/map" component={Map} exact/>
-              <Route path="/add-image" component={AddImage} exact />
-              <Route  component={ErrorPage}/>
+              <Switch>
+                <Route path="/" component={Home} exact />
+                <Route path="/map" component={Map} exact/>
+                <Route path="/add-image" component={AddImage} exact />
+                <Route  component={ErrorPage}/>
+              </Switch>
+              
           </div>
         </BrowserRouter>
       </div>
