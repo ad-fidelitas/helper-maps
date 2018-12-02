@@ -39,7 +39,8 @@ export default class PolygonMap extends Component {
             nuclei: [
             ],
             city:"Montreal",
-            position:{lat: 45.5016889,
+            position:
+            {lat: 45.5016889,
                 lng: -73.567256}
         }
 
@@ -183,7 +184,7 @@ export default class PolygonMap extends Component {
             console.log(json.results[0])
             console.log(location);
             this.setState({
-                location: location
+                position: location
             })
         })
         .catch((err)=>{
