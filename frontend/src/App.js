@@ -8,10 +8,16 @@ import AddImage from "./components/AddImage.js";
 import ErrorPage from "./components/Error.js";
 import About from "./components/about/about.js";
 import Footer from "./components/footer.js";
-
 import './App.css';
-
 // import ErrorPage from "./Error.jsx";
+
+// let imgUrl = bkrgnd
+// var sectionStyle = {
+//   width: "100%",
+//   height: "400px",
+//   backgroundImage: 'url(' + imgUrl + ')', 
+// };
+
 
 class App extends Component {
   render() {
@@ -28,7 +34,11 @@ class App extends Component {
                 <Route  component={ErrorPage}/>
               </Switch>
               <div>
+            
+              
+              <section>
               <Footer />
+              </section>
               </div>
           </div>
         </BrowserRouter>
@@ -36,7 +46,5 @@ class App extends Component {
     );
   }
 }
-
-
 
 export default App;

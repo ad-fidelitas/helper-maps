@@ -1,6 +1,7 @@
 const config = {
-    seed:false,
-    download: false
+    seed:true,
+    download: false,
+    manual: false
 }
 const express  = require('express'),
       mongoose = require('mongoose'),
@@ -20,7 +21,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 
 let indexRoutes = require("./index.js");
-app.use("/", indexRoutes);
+app.use("/", indexRoutes.router);
 
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/yale', {useNewUrlParser:true});
@@ -42,6 +43,23 @@ db.once('open', function() {
         console.log("database has been seeded");
     })
   }
+  if(config.manual) {
+      let downloadLocationPicture = require("./google_script.js");
+    let latitude = 45.493613;
+        let longitude = -73.587746;
+
+    // 		for (var i = 0; i < 0.5; i+= 0.05){
+                    //console.log(`i = ${i}`)
+    //for( var i = 0; i < 10; i++) {
+        var filename = Date.now()
+        longitude += 0.0068362*6
+        latitude += 0.003007*6
+        downloadLocationPicture("restaurant", `circle:20@${latitude},${longitude}`, `./images/file.jpg`)
+        .then( (res) => {
+            console.log(res)
+            indexRoutes.processImgOnly(longitude, latitude);
+        })
+    }
 });
 
 // 404 error

@@ -113,18 +113,8 @@ try:
             accessScore = accessScore - 1
         if 'chair' in labelArray:
             accessScore = accessScore - 0.5
-        if 'road' in labelArray:
-            accessScore = accessScore - 0.5
-        if 'people' in labelArray:
-            accessScore = accessScore - 0.5
-        if 'crowd' in labelArray:
-            accessScore = accessScore - 0.5
-        if 'rock' in labelArray:
-            accessScore = accessScore - 1
         if 'ramp' in labelArray:
             accessScore = accessScore + 1
-        if 'grass' in labelArray:
-            accessScore = accessScore + 0.5
         if 'handrail' in labelArray:
             accessScore = accessScore + 0.5
         if 'path' in labelArray:

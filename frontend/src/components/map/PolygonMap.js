@@ -39,10 +39,12 @@ export default class PolygonMap extends Component {
             /** @type {Array<Location>} */
             nuclei: [
             ],
-            city:"Montreal",
+            city:"Yale",
             position:
-            {lat: 45.5016889,
-                lng: -73.567256}
+            {lat: 41.3163244,
+                lng: -72.92234309999999}
+
+
         }
 
         this.onChange = this.onChange.bind(this);
@@ -94,8 +96,6 @@ export default class PolygonMap extends Component {
             }
             formattedPolygons.push(newPolygon)
         }
-
-        console.log(formattedPolygons)
         return formattedPolygons
     }
 
@@ -113,10 +113,9 @@ export default class PolygonMap extends Component {
             let oldNuclei = this.state.nuclei;
             let newNuclei = oldNuclei.slice();
             newNuclei = newNuclei.concat(locations);
-            console.log(newNuclei);
             // console.log(polygons[0])uclei);
             this.setState({
-                    nuclei:newNuclei
+                nuclei:newNuclei
             })
         })
         .catch((err)=>{
@@ -129,6 +128,15 @@ export default class PolygonMap extends Component {
         let polygons = this.convertNucleiToPolygons()
         polygons = polygons.concat(this.state.polygons);
         console.log(polygons);
+
+        // Change city style
+        let buttonStyle = {
+            height: "25px",
+            backgroundColor: "white",
+            borderRadius: "5px",
+            marginTop: "30px"
+        }
+
         return(
             <div>
             
@@ -138,10 +146,16 @@ export default class PolygonMap extends Component {
                 </Button>
             </Link>
             <div style={{display:'flex', justifyContent:'center'}}>
+<<<<<<< HEAD
                 <Dropdown />
                 <Button style={{ border: '3px solid #009688', marginLeft: '10px' }}>
                     Submit
                 </Button>
+=======
+                <Dropdown onChange={this.onChange} value={this.state.city}/>
+                <button style={buttonStyle} type="button" 
+                onClick={this.requestData}>Change!</button>
+>>>>>>> 4eac6ba7e9b05377d942f70f81e8f1d499761c6e
             </div>
                 <Map
                 isMarkerShown
@@ -150,6 +164,7 @@ export default class PolygonMap extends Component {
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `150%`, width: `60%`, margin: `2% auto`, border: `solid #009688 6px` }}/>}
                 defaultCenter={this.state.position}
+                
                 children={
                     <React.Fragment>
                         {polygons.map((polygon, index)=>(
@@ -176,15 +191,13 @@ export default class PolygonMap extends Component {
 
     requestData(event) {
         event.preventDefault();
-        console.log(this.state.city);
+        console.log("here")
         // Create the object
         // make request to google geocaching API Here (with the same key as before)
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.city}&key=AIzaSyBYx1RNyOmrhEp_KBp98yHQdqpPjCPu4ts`)
         .then(res=>res.json())
         .then(json=>{
             let location = json.results[0].geometry.location
-            console.log(json.results[0])
-            console.log(location);
             this.setState({
                 position: location
             })
