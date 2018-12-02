@@ -174,7 +174,6 @@ router.post("/upload", function(req,res){
 				return res.status(422).send('ERROR 2 in uploading file');
             }
 
-            var filename = req.file.filename;
 			getExifData()
 				.then((coords) => {
 					return new Promise(function(fulfill, reject) {
