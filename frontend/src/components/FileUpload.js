@@ -8,11 +8,9 @@ class FileUpload extends Component {
             selectedFile: '',
         };
     }
-
     onChange = (e) => {
         this.setState({ selectedFile: e.target.files[0] });
     }
-
     onSubmit = (e) => {
         e.preventDefault();
         const { selectedFile } = this.state;

@@ -26,5 +26,4 @@ function generateRandomLocations(quantity) {
     return randomLocations;
 }
 let seed = generateRandomLocations(10)
-
 fs.writeFileSync("./seeding/seeds/montreal_data.json", JSON.stringify(seed));
