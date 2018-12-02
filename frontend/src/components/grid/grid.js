@@ -51,7 +51,7 @@ class Columns extends React.Component {
                             <div>
                                 <ExpansionPanel className={classes.expand}>
                                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                                        <Typography style={{ color: `#fff` }} className={classes.heading}>Expansion Panel 1</Typography>
+                                        <Typography style={{ color: `#fff` }} className={classes.heading}>Instagram</Typography>
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>
                                         <Typography style={{ color: `#fff` }}>
@@ -68,7 +68,7 @@ class Columns extends React.Component {
                             <Paper className={classes.paper}>
                                 <ExpansionPanel className={classes.expand}>
                                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                                        <Typography style={{ color: `#fff` }}className={classes.heading}>Expansion Panel 1</Typography>
+                                        <Typography style={{ color: `#fff` }}className={classes.heading}>Locations</Typography>
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>
                                         <Typography style={{ color: `#fff` }} >
@@ -84,7 +84,7 @@ class Columns extends React.Component {
                             <Paper className={classes.paper}>
                                 <ExpansionPanel className={classes.expand}>
                                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                                        <Typography style={{ color: `#fff` }} className={classes.heading}>Expansion Panel 1</Typography>
+                                        <Typography style={{ color: `#fff` }} className={classes.heading}>Voronoi Diagram</Typography>
                                     </ExpansionPanelSummary>
                                     <ExpansionPanelDetails>
                                         <Typography style={{ color: `#fff` }}>
