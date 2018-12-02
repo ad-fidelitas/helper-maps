@@ -29,11 +29,11 @@ const styles = {
       <div className={classes.root}>
         <AppBar className={classes.header} position="static">
           <Toolbar variant="dense">
+          <Link to='./'>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <Link to='./'>
-              <MenuIcon />
-            </Link>
+                <MenuIcon style={{ color: `#fff` }} />
             </IconButton>
+            </Link>
             <Typography variant="h6" color="inherit">
               <b>HandiMaps</b>
             </Typography>
