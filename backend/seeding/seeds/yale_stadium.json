@@ -63,5 +63,245 @@
     {
         "coordinates": [41.314361, -72.930538],
         "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314267, -72.930697],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314276, -72.930638],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314339, -72.930585],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314366, -72.930477],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314415, -72.930418],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314391, -72.930375],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314450, -72.930346],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314445, -72.9305267],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314481, -72.930285],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314501, -72.930292],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314535, -72.930256],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314487, -72.930220],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314545, -72.930218],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314528, -72.930141],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314581, -72.930128],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314572, -72.930058],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314636, -72.930035],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314611, -72.929974],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314662, -72.929947],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314696, -72.929947],
+        "accessibilityRating": -7
+    },
+    {
+        "coordinates": [41.314681, -72.929868],
+        "accessibilityRating": -7
+    },
+    {
+        "coordinates": [41.314682, -72.929821],
+        "accessibilityRating": -7
+    },
+    {
+        "coordinates": [41.314713, -72.929898],
+        "accessibilityRating": -7
+    },
+    {
+        "coordinates": [41.314764, -72.929920],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314811, -72.929938],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314821, -72.929970],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314740, -72.930015],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314697, -72.930019],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314708, -72.930076],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314713, -72.930162],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314657, -72.930173],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314603, -72.930213],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314670, -72.930249],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314650, -72.930297],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314585, -72.930286],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314548, -72.930301],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314567, -72.93096],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314556, -72.930506],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314495, -72.930499],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314460, -72.930481],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314486, -72.930555],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314457, -72.930677],
+        "accessibilityRating": 10
+    },
+    {
+        "coordinates": [41.314384, -72.930736],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314369, -72.930813],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314432, -72.930804],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314467, -72.930883],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314479, -72.930747],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314545, -72.930770],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314530, -72.930652],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314638, -72.930598],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314606, -72.930501],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314679, -72.930458],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314670, -72.930350],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314743, -72.930303],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314743, -72.930192],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314804, -72.930159],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314850, -72.930145],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314818, -72.930055],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314869, -72.930028],
+        "accessibilityRating": -10
+    },
+    {
+        "coordinates": [41.314828, -72.929960],
+        "accessibilityRating": -10
     }
 ]
