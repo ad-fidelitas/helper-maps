@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@google/maps": "^0.5.5",
+    "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "child_process": "^1.0.2",
     "exifreader": "^2.5.0",
