@@ -153,7 +153,7 @@ var upload = multer({
 
 function checkFileType (file, cb) {
     // Allowed extensions
-    var filetypes = /jpeg|jpg|png/;
+    var filetypes = /jpeg|jpg/;
     // check extensions
     var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     // check mime type
@@ -224,13 +224,15 @@ router.post("/upload", function(req,res){
 
 function processImgOnly(longitude, latitude) {
 	new Promise(function(fulfill, reject) {
-		const pyprog = spawn('python3',["./image-processing.py", 'file.jpg']);
+		const pyprog = spawn('python3',["./image-processing.py", 'google.jpg']);
 		pyprog.stdout.on('data', function(data) {
 			console.log('PYTHON SCRIPT WORKED')
+			console.log(data.toString())
 			fulfill(data);
 		});
 		pyprog.stderr.on('data', (data) => {
 			console.log('PYTHON SCRIPT BROKE')
+			console.log(data.toString())
 			reject(data);
 		});
 	})
@@ -246,18 +248,21 @@ function processImgOnly(longitude, latitude) {
 			accessibilityRating: accessTotal
 		})
 		.then((locationDoc)=>{
-			res.json(locationDoc);
+			console.log(locationDoc);
+			console.log('SUCCESSFULLY ADDED TO DATABASE')
 		})
 	})
 	.catch((err)=>{
 		console.log("error has not been properly analysed by the database");
-		res.status(422).json(err);
+		
 	});
 }
 
 
-
-module.exports = router;
+module.exports = {
+	router: router,
+	processImgOnly: processImgOnly
+}
 
 
 // router.post("/upload/", (req,res)=>{

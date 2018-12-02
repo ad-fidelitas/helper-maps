@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 
 let indexRoutes = require("./index.js");
-app.use("/", indexRoutes);
+app.use("/", indexRoutes.router);
 
 // MongoDB set-up
 mongoose.connect('mongodb://localhost:27017/yale', {useNewUrlParser:true});
