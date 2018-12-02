@@ -7,7 +7,7 @@ import ArrowBack from '@material-ui/icons/ArrowBack'
 export default function ErrorPage(props){
     return(
         <div>
-        <Link to="/">
+            <Link to="/">
                 <Button style={{ margin: `4% 0 0 4%`, backgroundColor: `#d43a36` }} variant="fab" color="primary" aria-label="Add">
                     <ArrowBack />
                 </Button>
