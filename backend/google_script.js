@@ -28,27 +28,34 @@ function downloadLocationPicture(locationName, locationbias, filename) {
             if(err) {
                 reject(err)
             } else {
-                googleMapsClient.placesPhoto({
-                    photoreference:response.json.candidates[0].photos[0].photo_reference,
-                    maxheight:800
-                }, function(err, response){
-                    if(err) {
-                        reject(err)
-                    } else {
-                        let uri = "https://" + response.req.socket._host + response.req.path;
-                        download(uri, filename, function(err){
-                            if(err){
-                                reject(err);
+                setTimeout(function(){
+                    if(response.json.candidates[0].photos) {
+                        googleMapsClient.placesPhoto({
+                            photoreference:response.json.candidates[0].photos[0].photo_reference,
+                            maxheight:800
+                        }, function(err, response){
+                            if(err) {
+                                reject(err)
                             } else {
-                                console.log("suppposed to resolve")
-                                resolve({
-                                    name:filename,
-                                    location:locationbias
+                                let uri = "https://" + response.req.socket._host + response.req.path;
+                                console.log(uri)
+                                download(uri, filename, function(err){
+                                    if(err){
+                                        reject(err);
+                                    } else {
+                                        console.log("suppposed to resolve")
+                                        resolve({
+                                            name:filename,
+                                            location:locationbias
+                                        });
+                                    }
                                 });
                             }
-                        });
+                        }) 
+                    } else {
+                        resolve(null);
                     }
-                })
+                }, 300)
             }
         })  
     })
@@ -75,47 +82,54 @@ function callGoogle() {
         console.log("==================================")
 
         let locationInfo = []
-        for (let index = 0; index < 10; index+=3) {
-            downloadLocationPicture("public", locationBiasArray[index], `./seed-images/${Date.now()}.jpg`)
-            .then((res)=>{
-                console.log(res)
-                locationInfo.push(res);
-                if(locationInfo.length == 3) {
-                    console.log(locationInfo);
-                }
-            })
-        }
-        Promise.map(locationBiasArray, function(locationBias) {
-            return downloadLocationPicture("public", locationBias, `./seed-images/${Date.now()}.jpg`)
-        }, {concurrency:3})
-        .then((info)=>{
-            console.log("ingo")
-            console.log(info);
+        getAllPromiseData(locationBiasArray.slice(0,10), 0, 2, locationInfo)
+        .then((res)=>{
+            console.log(res);
+            console.log("for you")
         })
-        .catch((err)=>{
-            console.log("errro")
-            console.log(err)
-        });
+        // for (let index = 0; index < 10; index+=3) {
+        //     downloadLocationPicture("public", locationBiasArray[index], `./seed-images/${Date.now()}.jpg`)
+        //     .then((res)=>{
+        //         console.log(res)
+        //         locationInfo.push(res);
+        //         if(locationInfo.length == 3) {
+        //             console.log(locationInfo);
+        //         }
+        //     })
+        // }
+        // Promise.map(locationBiasArray, function(locationBias) {
+        //     return downloadLocationPicture("public", locationBias, `./seed-images/${Date.now()}.jpg`)
+        // }, {concurrency:3})
+        // .then((info)=>{
+        //     console.log("ingo")
+        //     console.log(info);
+        // })
+        // .catch((err)=>{
+        //     console.log("errro")
+        //     console.log(err)
+        // });
 }
 
 
 function getAllPromiseData(infoArray, index,  concurrencyMax, data) {
-    
-    for (let i = index; i < index+concurrencyMax && i < infoArray.length; i++) {
-        downloadLocationPicture("public", infoArray[i], `./seed-images/${Date.now()}.jpg`)
-        .then((res)=>{
-            console.log(res)
-            locationInfo.push(res);
-            if(data.length ===infoArray.length){
-                // resolveThepromise with the data
-            }
-            if(data.length === index+concurrencyMax) {
-                setTimeout(function(){
-                    resolve(getAllPromiseData(infoArray, i+1, concurrencyMax, data))
-                }, 500);
-            }
-        })
-    }
+    return new Promise(function(resolve, reject){
+        for (let i = index; i < index+concurrencyMax && i < infoArray.length; i++) {
+            downloadLocationPicture("public", infoArray[i], `./seed-images/${Date.now()}.jpg`)
+            .then((res)=>{
+                console.log(res)
+                data.push(res);
+                if(data.length ===infoArray.length){
+                    resolve(data)
+                }
+                if(data.length === index+concurrencyMax) {
+                    console.log(data);
+                    setTimeout(function(){
+                        resolve(getAllPromiseData(infoArray, i+1, concurrencyMax, data))
+                    }, 15000);
+                }
+            })
+        }
+    })
 }
 
 callGoogle()
