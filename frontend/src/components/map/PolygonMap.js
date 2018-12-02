@@ -141,6 +141,7 @@ export default class PolygonMap extends Component {
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `150%`, width: `60%`, margin: `2% auto`, border: `solid #009688 6px` }}/>}
+                defaultCenter={this.state.position}
                 children={
                     <React.Fragment>
                         {polygons.map((polygon, index)=>(
