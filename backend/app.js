@@ -1,6 +1,6 @@
 const config = {
     seed:false,
-    download: true
+    download: false
 }
 const express  = require('express'),
       mongoose = require('mongoose'),
