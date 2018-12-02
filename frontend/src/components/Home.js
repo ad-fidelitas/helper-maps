@@ -6,6 +6,15 @@ import Button from '@material-ui/core/Button';
 import CameraEnhance from '@material-ui/icons/CameraEnhance'
 import AddLocation from '@material-ui/icons/AddLocation'
 import Help from '@material-ui/icons/Help'
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import People from '@material-ui/icons/People'
+import Grid from '@material-ui/core/Grid';
+import TagFaces from '@material-ui/icons/TagFaces'
+import School from '@material-ui/icons/School'
 
 const styles = theme => ({
   button: {
@@ -16,7 +25,34 @@ const styles = theme => ({
   extendedIcon: {
     marginRight: theme.spacing.unit,
   },
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
 });
+
+function MediaCard(props) {
+    return (
+      <Card className={styles.card}>
+        <CardActionArea>
+          <CardMedia
+            className={styles.media}
+          />
+          <CardContent>
+            <People />
+            <Typography gutterBottom variant="h5" component="h2">
+              Community
+            </Typography>
+            <Typography component="p">
+              A more engaged community means we will be able to help more people
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    );
+}
 
 function HomePage(props) {
   const { classes } = props;
@@ -43,14 +79,69 @@ function HomePage(props) {
                 </Link>
             </div>
         </div>
+        <div style={{ textAlign: 'center' }}>
+            <h1 style={{ display: 'inline-block', align: 'center', fontSize: '50px', fontWeight: '1', borderBottom: '4px solid #d43a36', marginBottom: '7%' }}>
+                Our Goals
+            </h1>
+            <Grid container justify="center" alignItems="center">
+            
+      <Card className={styles.card}>
+        <CardActionArea>
+          <CardMedia
+            className={styles.media}
+          />
+          <CardContent>
+            <TagFaces />
+            <Typography gutterBottom variant="h5" component="h2">
+              Accessibility
+            </Typography>
+            <Typography component="p">
+              Ease of use is one of our main concerns
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      <Card className={styles.card}>
+        <CardActionArea>
+          <CardMedia
+            className={styles.media}
+          />
+          <CardContent>
+            <People />
+            <Typography gutterBottom variant="h5" component="h2">
+              Community
+            </Typography>
+            <Typography component="p">
+              A more engaged community means we will be able to help more people
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      <Card className={styles.card}>
+        <CardActionArea>
+          <CardMedia
+            className={styles.media}
+          />
+          <CardContent>
+            <School />
+            <Typography gutterBottom variant="h5" component="h2">
+              Efficiency
+            </Typography>
+            <Typography component="p">
+              We aim to be a good use of your time
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+            </Grid>
+        </div>
         
     </div>
   );
-}
-
 HomePage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+}
 
 export default withStyles(styles)(HomePage);
 

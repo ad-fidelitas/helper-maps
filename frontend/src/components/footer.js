@@ -23,8 +23,11 @@ const styles = {
         
         <BottomNavigation>
             <Typography variant="h6" color="inherit">
-            <h3><img src={gcpLogo} height="80px" width="80px" alt="missing"/>POWERED BY GCP, INSPIRED BY JP MORGAN <img src={jpmcLogo} height="65px" width="420px" alt="missing"/></h3>
-            </Typography></BottomNavigation>
+              <img src={gcpLogo} style={{ marginRight: '15px' }} height="80px" width="80px" alt="missing"/>
+              <img src={jpmcLogo} height="65px" width="420px" alt="missing"/>
+              <h3>POWERED BY GCP, INSPIRED BY JP MORGAN</h3>
+            </Typography>
+        </BottomNavigation>
             
       </div>
     );
