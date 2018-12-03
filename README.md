@@ -42,7 +42,7 @@ We used MongoDb in tandem with the mongoose librairy to send and query data from
 
 ### Frontend
 
-#### ReactJs
+#### ReactJS
 
 ReactJs was used to structure the front-end section of the application. We use the react router to manage different front-end componnents while maintining a single page web application.
 
@@ -50,7 +50,10 @@ ReactJs was used to structure the front-end section of the application. We use t
 
 The google maps API is used to embedd a map component into our react application. Using component overlays, we were able to display real-world data using by adding a network of colored polygons (see the demo for an example of this display).
 
-#### d3 librairys
+#### d3 library
+
+D3 (or Data-Driven Documents) is a library for producing dynamic and interactive data visualizations in web browsers. For this project, it was used to transform the provided data from map coordinates to polygons in a Voronoi diagram centered around each of said coordinates. This type of diagram partitions the plane into regions based on the coordinates' distance from each other. The produced diagram will showcase which regions on the map are more (or less) accessible than the others, which will give the users a better idea of which routes to take and which to avoid.
+Note: This type of diagram increases in accuracy wih more data, as shown in the later sections of this guide.
 
 ## Demo
 

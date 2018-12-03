@@ -1,5 +1,5 @@
 const config = {
-    seed:true,
+    seed: true,
     download: false,
     manual: false
 }
