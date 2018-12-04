@@ -18,6 +18,13 @@ import './App.css';
 //   backgroundImage: 'url(' + imgUrl + ')', 
 // };
 
+const Layout = ({ children }) => (
+    <div>
+      <Navbar />
+        {children}
+    </div>
+  );
+
 
 class App extends Component {
   render() {
@@ -25,20 +32,21 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-              <Navbar/>
               <Switch>
                 <Route path="/" component={Home} exact />
-                <Route path="/map" component={Map} exact/>
-                <Route path="/add-image" component={AddImage} exact />
-                <Route path="/about" component={About} exact />
-                <Route  component={ErrorPage}/>
+                  <Layout>
+                    <Route path="/map" component={Map} exact/>
+                    <Route path="/add-image" component={AddImage} exact />
+                    <Route path="/about" component={About} exact />
+                  </Layout>
+                  <Layout>
+                    <Route component={ErrorPage}/>
+                  </Layout>
               </Switch>
               <div>
-            
-              
-              <section>
-              <Footer />
-              </section>
+                <section>
+                  <Footer />
+                </section>
               </div>
           </div>
         </BrowserRouter>
