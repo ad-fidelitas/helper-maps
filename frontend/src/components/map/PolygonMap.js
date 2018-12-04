@@ -43,8 +43,6 @@ export default class PolygonMap extends Component {
             position:
             {lat: 41.3163244,
                 lng: -72.92234309999999}
-
-
         }
 
         this.onChange = this.onChange.bind(this);
