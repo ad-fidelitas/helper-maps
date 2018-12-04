@@ -33,27 +33,6 @@ const styles = theme => ({
   },
 });
 
-function MediaCard(props) {
-    return (
-      <Card className={styles.card}>
-        <CardActionArea>
-          <CardMedia
-            className={styles.media}
-          />
-          <CardContent>
-            <People />
-            <Typography gutterBottom variant="h5" component="h2">
-              Community
-            </Typography>
-            <Typography component="p">
-              A more engaged community means we will be able to help more people
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    );
-}
-
 function HomePage(props) {
   const { classes } = props;
   return (
@@ -138,9 +117,6 @@ function HomePage(props) {
         
     </div>
   );
-HomePage.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 }
 
 export default withStyles(styles)(HomePage);
