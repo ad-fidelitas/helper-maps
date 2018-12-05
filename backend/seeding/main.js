@@ -1,5 +1,5 @@
 let Location = require("../models/Location");
-let seedLocations = require("./seeds/montreal_full_data.json");
+let seedLocations = require("./seeds/yale_stadium.json");
 
 function exec() {
     return Location.deleteMany({})
