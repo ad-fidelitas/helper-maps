@@ -72,6 +72,8 @@ Note: This type of diagram increases in accuracy wih more data, as shown in the 
 
 ![](/readme-images/map1.png?raw=true)
 
+![](/readme-images/map2.png?raw=true)
+
 ## Running the project
 
 #### Set-up:
