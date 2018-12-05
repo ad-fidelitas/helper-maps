@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -32,27 +31,6 @@ const styles = theme => ({
     height: 140,
   },
 });
-
-function MediaCard(props) {
-    return (
-      <Card className={styles.card}>
-        <CardActionArea>
-          <CardMedia
-            className={styles.media}
-          />
-          <CardContent>
-            <People />
-            <Typography gutterBottom variant="h5" component="h2">
-              Community
-            </Typography>
-            <Typography component="p">
-              A more engaged community means we will be able to help more people
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    );
-}
 
 function HomePage(props) {
   const { classes } = props;
@@ -138,20 +116,6 @@ function HomePage(props) {
         
     </div>
   );
-HomePage.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 }
 
 export default withStyles(styles)(HomePage);
-
-// export default function HomePage(props) {
-//     // You can compute or insert data for the homepage here if you want
-//     return(
-//         <div>
-//             {/* Put the HTML here, 
-//             if you want to use classes, use the clasnName attribute instead of the class sticker */}
-            
-//         </div>
-//     )
-// }
