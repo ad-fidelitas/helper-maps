@@ -1,4 +1,4 @@
-# HandiMaps
+# HelperMaps
 
 ## Table of contents
 
